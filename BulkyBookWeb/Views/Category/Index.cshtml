@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Category>
+@{
+    ViewData["Title"] = "Index";
+}
+   
+<partial name="_Notifications">
+<h1>Category List</h1>
+<br />
+<a style="border: 3px solid black; padding:10px;background-color:aqua;" asp-controller="Category" asp-action="Create">Create a new category</a>
+<br />
+<br />
+<table class="table table-bordered table-striped" style="width: 100%">
+   <thead>
+        <tr>
+             <th>
+                Category name @*ke display imeto na kategorijata*@
+             </th>
+             <th>
+               Category Display order @*ke display display order*@
+             </th>
+             <th></th>
+         </tr>
+   </thead>
+    <tbody>
+        @*ke iterirame niz IEnumerable<Category> so for each *@
+        @foreach (var category in Model)
+        {
+            <tr>
+                <td width="50%">
+                    @category.Name
+                </td>
+            
+                <td width="50%">
+                    @category.DisplayOrder
+                </td>
+                <td>
+                    <a asp-controller="Category" asp-action="Edit" asp-route-id="@category.Id">Edit</a>
+                </td>
+                <td>
+                    <a asp-controller="Category" asp-action="Delete" asp-route-id="@category.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
